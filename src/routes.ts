@@ -29,7 +29,7 @@ const updateEndDateController = new UpdateEndDateController();
 routes.post("/clients/authenticate", autenticateClientController.handle);
 routes.post("/deliveryman/authenticate", authenticateDeliverymanController.handle);
 
-routes.post("/client/", createClientContoller.handle);
+routes.post("/client", createClientContoller.handle);
 
 routes.post("/deliveryman/", createDeliverymanController.handle);
 

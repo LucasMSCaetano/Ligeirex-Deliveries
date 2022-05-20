@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { CreateClientUseCase } from "./CreateClientUseCase";
 
-export class CreateClientController {
-    async handle(request: Request, response: Response){
+export default async function CreateClientController (request: Request, response: Response) {
+   try{
         const {username, password} = request.body;
         
         const createClientUseCase = new CreateClientUseCase();
@@ -12,5 +12,8 @@ export class CreateClientController {
         })
 
         return response.json(result);
-    }
+    } catch (Error) {
+        console.error(Error);
+        return response.json(Error);
+      }
 }

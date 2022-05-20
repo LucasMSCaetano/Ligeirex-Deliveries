@@ -1,12 +1,9 @@
-import express, { NextFunction, Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import "express-async-errors"
-import { routes } from "./routes"
+import app from "./config/App"
+import Environments from "./config/Environments"
+const { PORT } = Environments;
 
-const app = express()
-
-app.use(express.json())
-
-app.use(routes)
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) =>{
     if(err instanceof Error){
@@ -15,4 +12,4 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     return response.status(500).json({status: "error", message: "Internal server error"})
 })
 
-app.listen(3000, () => console.log("server is running"))
+app.listen(3000, () => console.log(`Listening at http://[::]:${PORT}`))
