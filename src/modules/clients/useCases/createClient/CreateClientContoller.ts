@@ -16,5 +16,5 @@ export default async function CreateClientController (request: Request, response
     } catch (Error) {
         console.error(Error);
         return response.json(Error);
-      }
+    }
 }
