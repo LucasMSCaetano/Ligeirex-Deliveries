@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
+import { Errors } from "../utils/Erros";
 
 interface IPayload{
     sub: string
@@ -9,9 +10,7 @@ export async function ensureAuthenticateClient( request: Request, response: Resp
     const authHeader = request.headers.authorization;
 
     if(!authHeader){
-        return response.status(401).json({
-            message: "Token missing"
-        })
+        return response.status(401).json(Errors.tokenMissing())
     }
 
     const [,token] = authHeader.split(" ")
@@ -23,8 +22,6 @@ export async function ensureAuthenticateClient( request: Request, response: Resp
        
        return next()
     }catch(err){
-        return response.status(401).json({
-            message: "Invalid token!"
-        })
+        return response.status(401).json(Errors.invalidToken())
     }
 }

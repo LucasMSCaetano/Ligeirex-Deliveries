@@ -1,6 +1,5 @@
 import { prisma } from "../../../../database/prismaClient";
 import { hash } from "bcrypt";
-import errorToJSON from 'error-to-json'
 import {Errors} from '../../../../utils/Erros'
 interface ICreateClient{
     username: string;
@@ -20,7 +19,6 @@ export class CreateClientUseCase {
         })
 
         if(clientExist){
-            // var json = errorToJSON(new Error("Client already exists"))
             return Errors.generic.invalidType({fieldKey: 'Client'})
         }
 
