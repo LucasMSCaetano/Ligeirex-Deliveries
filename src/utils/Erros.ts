@@ -1,13 +1,12 @@
-import errorToJSON from 'error-to-json'
-
+const errorFunction = (status:number, message:string) => ({ status, message });
 interface IErrorsFildKeys{
     fieldKey: string;
 }
 
-export const Errors = {
+export const Errors  = {
     generic: {
-        invalidType: ({ fieldKey }: IErrorsFildKeys) => errorToJSON(new Error(`${fieldKey} already exists`))
+        invalidType: ({ fieldKey }: IErrorsFildKeys) => errorFunction(400, `${fieldKey} already exists`),
     },
-    tokenMissing: () => errorToJSON(new Error('Token missing')),
-    invalidToken: () => errorToJSON(new Error('Invalid token!'))
+    tokenMissing: () => errorFunction(401, 'Token missing'),
+    invalidToken: () => errorFunction(401, 'Invalid token!')
 }

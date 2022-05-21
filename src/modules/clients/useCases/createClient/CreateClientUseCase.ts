@@ -1,6 +1,6 @@
 import { prisma } from "../../../../database/prismaClient";
 import { hash } from "bcrypt";
-import {Errors} from '../../../../utils/Erros'
+import { Errors } from '../../../../utils/Erros'
 interface ICreateClient{
     username: string;
     password: string;
