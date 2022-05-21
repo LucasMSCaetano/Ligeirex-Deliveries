@@ -1,6 +1,7 @@
 import { prisma } from "../../../database/prismaClient";
 import {compare} from "bcrypt";
 import {sign} from "jsonwebtoken"
+import { Errors } from "../../../utils/Erros";
 
 interface IAuthenticateClient{
     username: string;
@@ -16,11 +17,11 @@ export class AutenticateClientUseCase {
         })
 
         if(!client){
-            throw new Error("Username or password invalid!")
+            return Errors.generic.invalidField({fieldKey: 'username'})
         }
 
         const passwordMatch = await compare(password, client.password)
-        if(!passwordMatch) throw new Error("Username or password invalid!")
+        if(!passwordMatch) return Errors.generic.invalidField({fieldKey: 'password'})
 
         const token = sign({username}, "698dc19d489c4e4db73e28a713eab07b", {
             subject: client.id,

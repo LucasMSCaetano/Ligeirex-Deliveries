@@ -6,8 +6,9 @@ export default async function AutenticateClientController (request: Request, res
         const {username, password} = request.body;
 
         const autenticateClientUseCase = new AutenticateClientUseCase();
-        const result = await autenticateClientUseCase.execute({username, password})
-
+        const result: any = await autenticateClientUseCase.execute({username, password})
+        if(result.status)return response.status(result.status).json({success: "false", message: result.message})
+        
         return response.json(result);
     } catch (Error) {
         console.error(Error);
