@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AutenticateClientUseCase } from "./AutenticateClientUseCase";
+import { AutenticateClientUseCase } from "./AuthenticateClientUseCase";
 
 export default async function AutenticateClientController (request: Request, response: Response){
     try{

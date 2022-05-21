@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { ensureAuthenticateClient } from '../middlewares/ensureAuthenticateClient';
-import AutenticateClientController from '../modules/account/autenticateUser/autenticateClientController';
+import AutenticateClientController from '../modules/account/authenticateUser/AuthenticateClientController';
 import CreateClientController from '../modules/clients/useCases/createClient/CreateClientContoller';
 import FindAllDeliveriesController from '../modules/clients/useCases/deliveries/FindAllDeliveriesController';
 
